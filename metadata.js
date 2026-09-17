@@ -77,7 +77,7 @@ async function readPart(url, rangeBytes) {
   const reader=response.body.getReader();const chunks=[];let length=0;
   for(;;){const {done,value}=await reader.read();if(done)break;length+=value.byteLength;if(length>limit){await reader.cancel();throw Error('Metadata download exceeded its byte limit.');}chunks.push(value);}
   const buffer=new Uint8Array(length);let offset=0;for(const chunk of chunks){buffer.set(chunk,offset);offset+=chunk.length;}
-  const {parse}=await import('./vendor/exifr.mjs');
+  const {parse}=await import('./vendor/exifr.js');
   const size=partial?Number(match[2]):length;
   let tags;
   try {
