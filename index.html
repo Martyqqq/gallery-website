@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Martin Quintana — Photo Gallery</title>
+<meta name="description" content="A visual journal of photographs, places and moments.">
+<link rel="icon" href="./ficon.svg"><link rel="stylesheet" href="./styles.css">
+<script type="module" src="./gallery.js"></script>
+</head>
+<body>
+<main class="archive">
+<header class="archive-header"><div class="identity"><h1>Martin Quintana</h1><span>Photo Gallery</span></div><p class="header-note">A visual journal of places &amp; moments</p></header>
+<div class="gallery-heading"><span></span><span class="collection">A Collection</span></div>
+<div id="message" class="gallery-message" role="status">Opening the collection...</div>
+<div id="gallery" class="gallery-rail" tabindex="0" role="region" aria-label="Photography gallery. Scroll horizontally or use the left and right arrow keys." hidden></div>
+<footer class="archive-footer"><span id="counter" class="counter">00 / 00</span><div class="progress-track" aria-hidden="true"><span id="progress"></span></div><span class="scroll-hint"><span class="desktop-hint">Scroll to explore</span><span class="mobile-hint">Swipe to explore</span><span aria-hidden="true"></span></span></footer>
+</main>
+<dialog id="details" class="photo-details" aria-labelledby="photo-title">
+<button id="close-details" aria-label="Close photo details" autofocus>×</button>
+<div class="details-header"><span class="eyebrow">Photograph</span><h2 id="photo-title" class="details-title"></h2><p id="credit" class="photo-credit"></p></div>
+<section class="detail-section"><h2>01 <span>Metadata</span></h2><p id="metadata-status" class="metadata-status" role="status"></p><button id="retry-metadata" class="retry" hidden>Retry metadata</button><table class="metadata-table"><caption class="sr-only">Photo metadata</caption><tbody id="metadata"></tbody></table></section>
+<section class="detail-section"><h2>02 <span>Location</span></h2><p id="location" class="muted"></p><div id="map" class="photo-map" hidden></div><p id="map-status" class="photo-credit" role="status"></p></section>
+<section class="detail-section"><h2>03 <span>Personal notes</span></h2><p id="notes" class="personal-notes"></p></section>
+</dialog>
+<noscript><p>Enable JavaScript to browse the photography gallery.</p></noscript>
+</body>
+</html>
