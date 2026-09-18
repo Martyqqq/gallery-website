@@ -69,7 +69,8 @@ async function fillDetails(photo){
  }
  if(token!==requestId||!dialog.open)return;
  fields=combineMetadata(fields,photo.metadata);$('metadata-status').textContent=message;
- for(const [key,value] of Object.entries(fields)){if(value===null||value==='')continue;const row=element('tr'),label=element('th','',key);label.scope='row';row.append(label,element('td','',value));$('metadata').append(row);}
+ const visibleFields=['Display dimensions','Camera manufacturer','Camera model','Capture date','Lens'];
+ for(const key of visibleFields){const value=fields[key];if(value===undefined||value===null||value==='')continue;const row=element('tr'),label=element('th','',key);label.scope='row';row.append(label,element('td','',value));$('metadata').append(row);}
  const gps=coordinates(fields);if(!gps){$('location').textContent='No location is available for this photograph.';return;}
  $('location').textContent=`${gps.latitude.toFixed(5)}, ${gps.longitude.toFixed(5)}`;
  try{const L=await loadMapLibrary();if(token!==requestId||!dialog.open)return;$('map').hidden=false;map=L.map($('map'),{scrollWheelZoom:false}).setView([gps.latitude,gps.longitude],10);L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).on('tileerror',()=>{$('map-status').textContent='Some map tiles could not load.';}).addTo(map);L.circleMarker([gps.latitude,gps.longitude],{radius:7,color:'#fff',weight:2,fillColor:'#252525',fillOpacity:1}).addTo(map).bindTooltip('Photo location');mapResize=new ResizeObserver(()=>map?.invalidateSize());mapResize.observe($('map'));}
